@@ -2,7 +2,6 @@ const fs = require('fs')
 const path = require('path')
 const fileName = path.join(__dirname, 'text.txt')
 const output = fs.createWriteStream(fileName)
-const { stdin, stdout } = process
 
 stdout.write('\n--- Пожалуйста, введите ваш текст:\n')
 let resText = ''
@@ -15,6 +14,8 @@ stdin.on('data', data => {
         output.write(curText)
     }
 })
+
+const { stdin, stdout } = process
 
 process.on('SIGINT', () => {
     process.exit()
